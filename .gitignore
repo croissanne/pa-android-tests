@@ -1,0 +1,6 @@
+*~
+*.o
+*.o.d
+*/libs/*
+*/obj/*
+.clang-format
