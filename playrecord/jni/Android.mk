@@ -2,11 +2,12 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libportaudio
+TARGET_ARCH_ABI := armeabi-v7a
 LOCAL_SRC_FILES := $(TARGET_ARCH_ABI)/libportaudio.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-TARGET_PLATFORM := android-9
+TARGET_PLATFORM := android-19
 TARGET_ARCH_ABI := armeabi-v7
 LOCAL_MODULE := playrecord
 LOCAL_STATIC_LIBRARIES := portaudio

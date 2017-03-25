@@ -6,7 +6,7 @@
  * PortAudio Portable Real-Time Audio Library
  * Android OpenSLES-specific extensions
  *
- * Copyright (c) 2016-2017 Sanne Raymaekers
+ * Copyright (c) 1999-2000 Ross Bencina and Phil Burk
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files
@@ -50,16 +50,26 @@
 extern "C" {
 #endif
 
+/** The android stream type and recording preset as defined in
+ * OpenSLES_AndroidConfiguration.h
+ */
 typedef struct PaOpenslesStreamInfo {
     SLint32 androidPlaybackStreamType;
+    SLint32 androidRecordingPreset;
 } PaOpenslesStreamInfo;
 
-/* 
- * Provide PA OpenSLES with native buffer information. This function must be called before Pa_Initialize.
+/** Provide PA OpenSLES with native buffer information. This function must be called before Pa_Initialize.
  * To have optimal latency, this function should be called. Otherwise PA OpenSLES will use non-optimal values
  * as default.
+ * @param bufferSize the native buffersize as returned by AudioManager's PROPERTY_OUTPUT_FRAMES_PER_BUFFER. It is recommended you set the number of buffers to 1 if API>17 as well, and use the sample rate defined in AudioManager's android.media.property.OUTPUT_SAMPLE_RATE. All three together will enable the AUDIO_OUTPUT_FLAG_FAST flag.
  */
-void SetNativeBufferSize( unsigned long bufferSize );
+void PaOpenSLES_SetNativeBufferSize( unsigned long bufferSize );
+
+/** Provide PA OpenSLES with native buffer information. This function must be called before Pa_Initialize.
+ * To have optimal latency and enable the AUDIO_OUTPUT_FLAG_FAST flag, this function should be called. Otherwise PA OpenSLES will use non-optimal values (2) as default.
+ * @param The number of buffers can be reduced to 1 on API >17. Make sure you set the native buffer size when doing this, and use the sample rate defined in AudioManager's android.media.property.OUTPUT_SAMPLE_RATE.
+ */
+void PaOpenSLES_SetNumberOfBuffers( unsigned buffers );
 
 #ifdef __cplusplus
 }

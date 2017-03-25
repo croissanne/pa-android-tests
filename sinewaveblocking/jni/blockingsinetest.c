@@ -1,4 +1,5 @@
 #include "include/portaudio.h"
+#include "include/pa_opensles.h"
 #include <android/log.h>
 #include <math.h>
 
@@ -27,8 +28,8 @@ int main()
     int i, j, k;
     int bufferCount;
 
-    SetNumberOfBuffers(2);
-    SetNativeBufferSize(512);
+    PaOpenSLES_SetNumberOfBuffers(2);
+    PaOpenSLES_SetNativeBufferSize(512);
     for (i = 0; i < TABLE_SIZE; i++) {
         sine[i] =
             (short)(((float)sin(((double)i / (double)TABLE_SIZE) * M_PI * 2.)) *

@@ -70,7 +70,7 @@ int main()
     PaStreamParameters outputParameters, inputParameters;
     int i;
 
-    SetNativeBufferSize(
+    PaOpenSLES_SetNativeBufferSize(
         1024); /* before Pa_initialize the ideal buffer size is set */
     err = Pa_Initialize();
     if (err != paNoError) {
@@ -82,7 +82,7 @@ int main()
     if (outputParameters.device == paNoDevice) {
         __android_log_print(ANDROID_LOG_VERBOSE, APPNAME,
                             "no output device found");
-        return;
+        return 0;
     }
     outputParameters.channelCount = 2;
     outputParameters.sampleFormat = paInt16;
@@ -100,7 +100,7 @@ int main()
     if (inputParameters.device == paNoDevice) {
         __android_log_print(ANDROID_LOG_VERBOSE, APPNAME,
                             "no inputdevice found");
-        return;
+        return 0;
     }
     err =
         Pa_OpenStream(&stream, &inputParameters, &outputParameters, SAMPLE_RATE,
@@ -108,7 +108,7 @@ int main()
     if (err != paNoError) {
         __android_log_print(ANDROID_LOG_VERBOSE, APPNAME,
                             "couldn't open stream with err %d", err);
-        return;
+        return 0;
     }
     err = Pa_SetStreamFinishedCallback(stream, &paStreamFinished);
     if (err != paNoError) {
@@ -116,7 +116,7 @@ int main()
                             "couldn't set finished callback with err %d", err);
         Pa_CloseStream(stream);
         Pa_Terminate();
-        return;
+        return 0;
     }
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "starting playback");
     err = Pa_StartStream(stream);
@@ -125,7 +125,7 @@ int main()
                             "couldn't start stream with err %d", err);
         Pa_CloseStream(stream);
         Pa_Terminate();
-        return;
+        return 0;
     }
 
     Pa_Sleep(1000 * NUM_SECONDS);
@@ -137,7 +137,7 @@ int main()
                             "couldn't stop stream with err %d", err);
         Pa_CloseStream(stream);
         Pa_Terminate();
-        return;
+        return 0;
     }
 
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "closing playback");
@@ -146,10 +146,11 @@ int main()
         __android_log_print(ANDROID_LOG_VERBOSE, APPNAME,
                             "couldn't close stream with err %d", err);
         Pa_Terminate();
-        return;
+        return 0;
     }
 
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME,
                         "closed playback, terminating");
     Pa_Terminate();
+    return 0;
 }

@@ -61,15 +61,15 @@ typedef struct PaOpenslesStreamInfo {
 /** Provide PA OpenSLES with native buffer information. This function must be called before Pa_Initialize.
  * To have optimal latency, this function should be called. Otherwise PA OpenSLES will use non-optimal values
  * as default.
- * @param bufferSize the native buffersize as returned by AudioManager's PROPERTY_OUTPUT_FRAMES_PER_BUFFER. It is recommended you set the number of buffers to 1 if API>17 as well, and use the sample rate defined in AudioManager's android.media.property.OUTPUT_SAMPLE_RATE.
+ * @param bufferSize the native buffersize as returned by AudioManager's PROPERTY_OUTPUT_FRAMES_PER_BUFFER. It is recommended you set the number of buffers to 1 if API>17 as well, and use the sample rate defined in AudioManager's android.media.property.OUTPUT_SAMPLE_RATE. All three together will enable the AUDIO_OUTPUT_FLAG_FAST flag.
  */
-void SetNativeBufferSize( unsigned long bufferSize );
+void PaOpenSLES_SetNativeBufferSize( unsigned long bufferSize );
 
 /** Provide PA OpenSLES with native buffer information. This function must be called before Pa_Initialize.
- * To have optimal latency and enable the android.hardware.audio.low_latency, this function should be called. Otherwise PA OpenSLES will use non-optimal values (2) as default.
- * @param The number of buffers can be reduced to 1 on API >17. Make sure you set the native buffer size as well when doing this. And use the sample rate defined in AudioManager's android.media.property.OUTPUT_SAMPLE_RATE.
+ * To have optimal latency and enable the AUDIO_OUTPUT_FLAG_FAST flag, this function should be called. Otherwise PA OpenSLES will use non-optimal values (2) as default.
+ * @param The number of buffers can be reduced to 1 on API >17. Make sure you set the native buffer size when doing this, and use the sample rate defined in AudioManager's android.media.property.OUTPUT_SAMPLE_RATE.
  */
-void SetNumberOfBuffers( unsigned buffers );
+void PaOpenSLES_SetNumberOfBuffers( unsigned buffers );
 
 #ifdef __cplusplus
 }
