@@ -29,3 +29,7 @@ Now in the newly created libs folder there should be an executable which you can
 
 You may need to give it permission to execute using chmod in the adb shell. After that you can just call it from the adb shell. Check logs for some output.
 
+## building and running the java example (Portaudioexample)
+
+Simply import the gradle project into android studio (made with 2.3) and it should work.
+
