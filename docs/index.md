@@ -5,7 +5,7 @@ An archive version of portaudio is, for now, included in the jni/armeabi folder.
 
 ## building portaudio
 
-If you'd like to replace the included archives with your own you can crosscompile https://github.com/Gundersanne/portaudio_opensles.
+If you'd like to replace the included archives with your own you can crosscompile [https://github.com/Gundersanne/portaudio_opensles](https://github.com/Gundersanne/portaudio_opensles).
 
 I've included a shell script which you can use to crosscompile portaudio. You need an NDK and execute the standalone toolchain script. After that you can use something very similar to the included script.
 
@@ -19,7 +19,9 @@ You need an android android NDK, this was tested with the r9b version (http://dl
 
 To build simply go to the jni folder (the folder containing the Android.mk) and run:
 
-`export ANDROID_NDK_ROOT=/<path-to-your>/android-ndk-<version> && $ANDROID_NDK_ROOT/ndk-build`
+```
+export ANDROID_NDK_ROOT=/<path-to-your>/android-ndk-<version> && $ANDROID_NDK_ROOT/ndk-build
+```
 
 ## install and run
 
@@ -31,5 +33,5 @@ You may need to give it permission to execute using chmod in the adb shell. Afte
 
 ## building and running the java example (Portaudioexample)
 
-Simply import the gradle project into android studio (made with 2.3) and it should work.
+Simply import the gradle project into android studio (made with 2.3) and it should work. Or just install the [apk](https://github.com/Gundersanne/pa-android-tests/blob/master/docs/armeabi-v7a/app-debug.apk).
 

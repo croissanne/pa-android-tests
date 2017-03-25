@@ -33,3 +33,5 @@ You may need to give it permission to execute using chmod in the adb shell. Afte
 
 Simply import the gradle project into android studio (made with 2.3) and it should work.
 
+Or here is a link to the armv7 apk:
+https://github.com/Gundersanne/pa-android-tests/blob/master/docs/armeabi-v7a/app-debug.apk
