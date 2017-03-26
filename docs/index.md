@@ -33,5 +33,5 @@ You may need to give it permission to execute using chmod in the adb shell. Afte
 
 ## building and running the java example (Portaudioexample)
 
-Simply import the gradle project into android studio (made with 2.3) and it should work. Or just install the [apk](https://github.com/Gundersanne/pa-android-tests/blob/master/docs/armeabi-v7a/app-debug.apk).
+Simply import the gradle project into android studio (made with 2.3) and it should work. Or just install the [apk of the example](https://github.com/Gundersanne/pa-android-tests/raw/master/docs/armeabi-v7a/app-debug.apk).
 

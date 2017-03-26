@@ -32,12 +32,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-
-                        String sr = audio.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE);
-                        String buffers = audio.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER);
-                        Log.d("portaudioexample", sr + " " + buffers);
-                        playSine(Integer.parseInt(sr), 240);
+                        String sampleRate = audio.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE);
+                        String bufferSize = audio.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER);
+                        playSine(Integer.parseInt(sampleRate), Integer.parseInt(bufferSize));
                     }
                 }).start();
             }
