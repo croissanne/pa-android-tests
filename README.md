@@ -13,9 +13,30 @@ Simply edit the ANDROID_NDK_ROOT variable, make it point to a standalone instanc
 
 I've tested this with standalone toolchain platform android-14, arm architecture. Once the variable is set, you can execute the script and your files should be installed in the android_libs folder.
 
+## building portaudio using cmake
+
+An easier method to crosscompile https://github.com/Gundersanne/portaudio_opensles using cmake, all
+you need is the android ndk. Example:
+
+```
+# create and change to build dir
+mkdir -p build && cd build
+
+# location of the ANDROID_TOOLCHAIN_FILE relative to the unzipped ndk: android-ndk-r23/build/cmake/android.toolchain.cmake
+cmake \
+    -DANDROID_PLATFORM=android-15 \
+    -DANDROID_ABI=armeabi-v7a \
+    -DCMAKE_BUILD_TYPE=Debug \
+    -DCMAKE_TOOLCHAIN_FILE=$ANDROID_TOOLCHAIN_FILE \
+    ..
+
+# build
+make
+```
+
 ## building the examples
 
-You need an android android NDK, this was tested with the r9b version (http://dl.google.com/android/ndk/android-ndk-r9b-linux-x86_64.tar.bz2). Newer versions or versions for other operating systems are available here https://developer.android.com/ndk/downloads/index.html. To build the examples you do NOT need a standalone toolchain, just the ndk (containing ndk-build) will do.
+You need an android android NDK, this was tested with the r9b version (http://dl.google.com/android/ndk/android-ndk-r9b-linux-x86_64.tar.bz2). Newer versions or versions for other operating systems are available here https://developer.android.com/ndk/downloads/index.html. To build the examples you do not need a standalone toolchain, just the ndk (containing ndk-build) will do.
 
 To build simply go to the jni folder (the folder containing the Android.mk) and run:
 
